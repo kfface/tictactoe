@@ -1,5 +1,6 @@
 import random
 
+
 #make board
 positions = {1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9"}
 
@@ -22,10 +23,15 @@ def printBoard():
     print()
 
 def userMove():
-    selection = int(input("Your turn wher would you like to play?: "))
-    positions[selection] = "X"
-    global winCondList
-    winCondList = [list(map(lambda x: x if x != selection else 'X', i)) for i in winCondList]
+    selection = int(input("Your turn where would you like to play?: "))
+    while selection > 10 or selection < 0:
+        selection = int(input("that move is invalid please choose a legal move: "))
+    while positions[selection] == "X" or  selection > 9 or selection < 0:
+        selection = int(input("that move is invalid please choose a legal move: "))
+    else:
+        positions[selection] = "X"
+        global winCondList
+        winCondList = [list(map(lambda x: x if x != selection else 'X', i)) for i in winCondList]
 
 def checkForWinner():
     for list in winCondList:
