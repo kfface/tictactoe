@@ -61,10 +61,19 @@ def checkForWinner():
 
 def computerMove1 ():
     global winCondList
-    compMove = random.choice(list(positions))
-    while positions[compMove] == "O" or positions[compMove] == "X":
+    priorityMoveAvailable = False
+    priorityMoves = [5,1,3,7,9]
+    for value in priorityMoves:
+        if positions[value] != "X" and positions[value] != "O":
+            compMove = value
+            positions[compMove] = "O"
+            priorityMoveAvailable = True
+            break
+    if priorityMoveAvailable == False:
         compMove = random.choice(list(positions))
-    positions[compMove] = "O"
+        while positions[compMove] == "O" or positions[compMove] == "X":
+            compMove = random.choice(list(positions))
+            positions[compMove] = "O"
     winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
 
 def computerMove2 ():
