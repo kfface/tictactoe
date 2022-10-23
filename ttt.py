@@ -36,6 +36,7 @@ def userMove():
 def checkForWinner():
     global winCondList
     global moveCount
+    global thereIsWinner
     for list in winCondList:
         if list[0] == list[1] and list[0] == list[2]:
             if list[0] == "X":
@@ -46,10 +47,10 @@ def checkForWinner():
                 print("Get wrecked nerd!")
                 thereIsWinner = True
                 exit()
-            else:
-                if moveCount == 10 and thereIsWinner == False:
-                    print("It's a draw")
-                    exit()
+        else:
+            if moveCount == 9 and thereIsWinner == False:
+                print("It's a draw")
+                exit()
 
 def computerMove1 ():
     global winCondList
@@ -63,6 +64,7 @@ def computerMove2 ():
     global noBestMove
     global userTurn
     global winCondList
+    global compMove
     for list in winCondList:
         xCounter = 0
         oCounter = 0
@@ -76,11 +78,11 @@ def computerMove2 ():
             if xCounter == 2 or oCounter == 2:
                 for index, item in enumerate(list):
                     if list[index] != "X" and list[index] != "O":
+                        compMove = list[index]
                         positions[list[index]] = "O"
                         noBestMove = False
                         userTurn = True
-
-
+    
 printBoard()
 userTurn = True
 moveCount = 0
@@ -97,6 +99,9 @@ while moveCount < 10:
     else:
         noBestMove = True
         computerMove2()
+        if noBestMove == False:
+            winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
+
         if noBestMove == True:
             computerMove1()
             noBestMove = False
