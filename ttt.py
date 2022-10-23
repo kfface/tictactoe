@@ -1,6 +1,6 @@
 import random
 
-
+thereIsWinner = False
 #make board
 positions = {1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9"}
 
@@ -34,22 +34,61 @@ def userMove():
         winCondList = [list(map(lambda x: x if x != selection else 'X', i)) for i in winCondList]
 
 def checkForWinner():
+    global winCondList
+    global moveCount
+    global thereIsWinner
     for list in winCondList:
-        if list[0] == list [1] and list[0] == list[2]:
+        if list[0] == list[1] and list[0] == list[2]:
             if list[0] == "X":
                 print("You are the winner!")
+                thereIsWinner = True
                 exit()
             elif list[0] == "O":
                 print("Get wrecked nerd!")
+                thereIsWinner = True
+                exit()
+        else:
+            if moveCount == 9 and thereIsWinner == False:
+                print("It's a draw")
                 exit()
 
+def computerMove1 ():
+    global winCondList
+    compMove = random.choice(list(positions))
+    while positions[compMove] == "O" or positions[compMove] == "X":
+        compMove = random.choice(list(positions))
+    positions[compMove] = "O"
+    winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
 
+def computerMove2 ():
+    global noBestMove
+    global userTurn
+    global winCondList
+    global compMove
+    for list in winCondList:
+        xCounter = 0
+        oCounter = 0
+        if userTurn == True:
+            break
+        for value in list:
+            if value == "X":
+                xCounter += 1
+            elif value == "O":
+                oCounter += 1
+            if xCounter == 2 or oCounter == 2:
+                for index, item in enumerate(list):
+                    if list[index] != "X" and list[index] != "O":
+                        compMove = list[index]
+                        positions[list[index]] = "O"
+                        noBestMove = False
+                        userTurn = True
+    
 printBoard()
 userTurn = True
 moveCount = 0
 
 
-while moveCount < 9:
+while moveCount < 10:
     if userTurn == True:
         userMove()
         printBoard()
@@ -58,14 +97,16 @@ while moveCount < 9:
         userTurn = False
         
     else:
-        compMove = random.choice(list(positions))
-        while positions[compMove] == "O" or positions[compMove] == "X":
-            compMove = random.choice(list(positions))
-        positions[compMove] = "O"
-        winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
+        noBestMove = True
+        computerMove2()
+        if noBestMove == False:
+            winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
 
+        if noBestMove == True:
+            computerMove1()
+            noBestMove = False
         printBoard()
-        moveCount += 1
         checkForWinner()
         userTurn = True
+        moveCount += 1
 
