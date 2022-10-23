@@ -71,13 +71,26 @@ def computerMove2 ():
         if userTurn == True:
             break
         for value in list:
+            if value == "O":
+                oCounter += 1
+            if oCounter == 2:
+                for index, item in enumerate(list):
+                    if list[index] != "O" and list[index] != "X":
+                        compMove = list[index]
+                        positions[list[index]] = "O"
+                        noBestMove = False
+                        userTurn = True
+    for list in winCondList:
+        xCounter = 0
+        oCounter = 0
+        if userTurn == True:
+            break    
+        for value in list:
             if value == "X":
                 xCounter += 1
-            elif value == "O":
-                oCounter += 1
-            if xCounter == 2 or oCounter == 2:
+            if xCounter == 2:
                 for index, item in enumerate(list):
-                    if list[index] != "X" and list[index] != "O":
+                    if list[index] != "O" and list[index] != "X":
                         compMove = list[index]
                         positions[list[index]] = "O"
                         noBestMove = False
