@@ -1,6 +1,6 @@
 import random
 
-
+thereIsWinner = False
 #make board
 positions = {1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9"}
 
@@ -35,14 +35,21 @@ def userMove():
 
 def checkForWinner():
     global winCondList
+    global moveCount
     for list in winCondList:
-        if list[0] == list [1] and list[0] == list[2]:
+        if list[0] == list[1] and list[0] == list[2]:
             if list[0] == "X":
                 print("You are the winner!")
+                thereIsWinner = True
                 exit()
             elif list[0] == "O":
                 print("Get wrecked nerd!")
+                thereIsWinner = True
                 exit()
+            else:
+                if moveCount == 10 and thereIsWinner == False:
+                    print("It's a draw")
+                    exit()
 
 def computerMove1 ():
     global winCondList
@@ -54,9 +61,13 @@ def computerMove1 ():
 
 def computerMove2 ():
     global noBestMove
+    global userTurn
+    global winCondList
     for list in winCondList:
         xCounter = 0
         oCounter = 0
+        if userTurn == True:
+            break
         for value in list:
             if value == "X":
                 xCounter += 1
@@ -67,6 +78,7 @@ def computerMove2 ():
                     if list[index] != "X" and list[index] != "O":
                         positions[list[index]] = "O"
                         noBestMove = False
+                        userTurn = True
 
 
 printBoard()
@@ -74,7 +86,7 @@ userTurn = True
 moveCount = 0
 
 
-while moveCount < 9:
+while moveCount < 10:
     if userTurn == True:
         userMove()
         printBoard()
@@ -89,7 +101,7 @@ while moveCount < 9:
             computerMove1()
             noBestMove = False
         printBoard()
-        moveCount += 1
         checkForWinner()
         userTurn = True
+        moveCount += 1
 
