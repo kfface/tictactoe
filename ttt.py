@@ -22,7 +22,7 @@ def printBoard():
     print(positions[7] + "|" + positions[8] + "|" + positions[9])
     print()
 
-def userMove():
+def getUserMove():
     gettingInput = True
     while gettingInput:
         try:
@@ -59,7 +59,7 @@ def checkForWinner():
                 print("It's a draw")
                 exit()
 
-def computerMove1 ():
+def computerStarterMoves ():
     global winCondList
     priorityMoveAvailable = False
     priorityMoves = [5,1,3,7,9]
@@ -76,7 +76,7 @@ def computerMove1 ():
             positions[compMove] = "O"
     winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
 
-def computerMove2 ():
+def computerMoveWinOrBlock ():
     global noBestMove
     global userTurn
     global winCondList
@@ -119,7 +119,7 @@ moveCount = 0
 
 while moveCount < 10:
     if userTurn == True:
-        userMove()
+        getUserMove()
         printBoard()
         moveCount += 1
         checkForWinner()
@@ -127,12 +127,12 @@ while moveCount < 10:
         
     else:
         noBestMove = True
-        computerMove2()
+        computerMoveWinOrBlock()
         if noBestMove == False:
             winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
 
         if noBestMove == True:
-            computerMove1()
+            computerStarterMoves()
             noBestMove = False
         printBoard()
         checkForWinner()
