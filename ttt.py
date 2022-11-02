@@ -1,7 +1,8 @@
-import random
 import board
 import player
 import computer
+import random
+
 
 thereIsWinner = False
 #make board

@@ -1,3 +1,4 @@
+import board
 class Player:
     def GamePrep (self):
         PlayerName = input("Please enter your name: ")
