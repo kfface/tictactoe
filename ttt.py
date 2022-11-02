@@ -115,31 +115,29 @@ winCondList = [topRow, midRow, bottomRow, leftCol, midCol, rightCol, diagnal1, d
 #                        positions[list[index]] = "O"
 #                        noBestMove = False
 #                        userTurn = True
-    
-printBoard()
+board.Board().PrintBoard(positions)
 userTurn = True
 moveCount = 0
 
 
 while moveCount < 10:
     if userTurn == True:
-        getUserMove()
-        printBoard()
+        player.Player().PlayerMove(positions, winCondList)
+        board.Board().PrintBoard(positions)
         moveCount += 1
-        checkForWinner()
+        board.Board().CheckForWinner(winCondList, moveCount, thereIsWinner)
         userTurn = False
         
     else:
         noBestMove = True
-        computerMoveWinOrBlock()
-        if noBestMove == False:
-            winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
+        computer.Computer().ComputerMoveWinOrBlock(positions, noBestMove, userTurn, winCondList)
+        
 
         if noBestMove == True:
-            computerStarterMoves()
+            computer.Computer().ComputerStarterMoves(positions, winCondList)
             noBestMove = False
-        printBoard()
-        checkForWinner()
+        board.Board().PrintBoard(positions)
+        board.Board().CheckForWinner(winCondList, moveCount, thereIsWinner)
         userTurn = True
         moveCount += 1
 
