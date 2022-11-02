@@ -18,7 +18,8 @@ class Computer():
                 compMove = random.choice(list(positions))
                 positions[compMove] = "O"
         winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
-
+        return winCondList
+        
     def ComputerMoveWinOrBlock (self, positions, noBestMove, userTurn, winCondList):
         for list in winCondList:
             xCounter = 0
@@ -52,5 +53,5 @@ class Computer():
                             userTurn = True
         if noBestMove == False:
             winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in winCondList]
-            return winCondList
+        return winCondList
        

@@ -3,6 +3,7 @@ class Player():
     def GamePrep (self):
         PlayerName = input("Please enter your name: ")
         PlayersToken = input("Which piece would you like to plays, X or O?")
+
     def PlayerMove (self, positions, winCondList):
         gettingInput = True
         while gettingInput:
@@ -19,4 +20,4 @@ class Player():
             else:
                 positions[selection] = "X"
                 winCondList = [list(map(lambda x: x if x != selection else 'X', i)) for i in winCondList]
-                return winCondList
+        return winCondList

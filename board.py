@@ -15,6 +15,8 @@ class Board():
                 if moveCount == 9 and thereIsWinner == False:
                     print("It's a draw")
                     exit()
+        return winCondList
+        
     def PrintBoard(self, positions):
         print(positions[1] + "|" + positions[2] + "|" + positions[3])
         print("-----")
