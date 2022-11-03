@@ -22,8 +22,3 @@ class Board():
         print("-----")
         print(self.positions[7] + "|" + self.positions[8] + "|" + self.positions[9])
         print()
-
-    def ClearBoard(self):
-        clear = lambda : os.system('tput reset')
-    
-    
