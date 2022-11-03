@@ -20,29 +20,34 @@ diagnal2 = [3,5,7]
 winCondList = [topRow, midRow, bottomRow, leftCol, midCol, rightCol, diagnal1, diagnal2]
 
 #start game cycle
-board.Board().PrintBoard(positions)
+b = board.Board()
+p = player.Player()
+c = computer.Computer()
+
+b.PrintBoard(positions)
+
 userTurn = True
 moveCount = 0
 
 
 while moveCount < 10:
     if userTurn == True:
-        player.Player().PlayerMove(positions, winCondList)
-        board.Board().PrintBoard(positions)
+        p.PlayerMove(positions, winCondList)
+        b.PrintBoard(positions)
         moveCount += 1
-        board.Board().CheckForWinner(winCondList, moveCount, thereIsWinner)
+        b.CheckForWinner(winCondList, moveCount, thereIsWinner)
         userTurn = False
         
     else:
         noBestMove = True
-        computer.Computer().ComputerMoveWinOrBlock(positions, noBestMove, userTurn, winCondList)
+        c.ComputerMoveWinOrBlock(positions, noBestMove, userTurn, winCondList)
         
 
         if noBestMove == True:
-            computer.Computer().ComputerStarterMoves(positions, winCondList)
+            c.ComputerStarterMoves(positions, winCondList)
             noBestMove = False
-        board.Board().PrintBoard(positions)
-        board.Board().CheckForWinner(winCondList, moveCount, thereIsWinner)
+        b.PrintBoard(positions)
+        b.CheckForWinner(winCondList, moveCount, thereIsWinner)
         userTurn = True
         moveCount += 1
 

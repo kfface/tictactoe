@@ -18,6 +18,9 @@ class Board():
         return winCondList
         
     def PrintBoard(self, positions):
+        #clear the terminal before printing out the board state
+        os.system('cls' if os.name == 'nt' else 'clear')
+
         print(positions[1] + "|" + positions[2] + "|" + positions[3])
         print("-----")
         print(positions[4] + "|" + positions[5] + "|" + positions[6])
