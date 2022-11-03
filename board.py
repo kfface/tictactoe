@@ -40,7 +40,7 @@ class Board():
             )
             frame.grid(row=i, column=j, padx=5, pady=5)
             buttonNumber = ((3*i) + (j+1))
-            button = tk.Button(master=frame, background="grey", text=buttonNumber, command=partial(clicked, buttons, buttonNumber))
+            button = tk.Button(master=frame, background="grey", text="-", command=partial(clicked, buttons, buttonNumber))
             button.pack(padx=5, pady=5)
             buttons[buttonNumber] = button
 
