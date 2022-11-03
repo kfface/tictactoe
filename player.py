@@ -1,10 +1,10 @@
 import board
 class Player():
-    def GamePrep (self):
+    def GamePrep(self):
         PlayerName = input("Please enter your name: ")
         PlayersToken = input("Which piece would you like to plays, X or O?")
 
-    def PlayerMove (self, positions, winCondList):
+    def PlayerMove(self, positions, winCondPlayer):
         gettingInput = True
         while gettingInput:
             try:
@@ -19,5 +19,5 @@ class Player():
                 selection = int(input("that move is invalid please choose a legal move: "))
             else:
                 positions[selection] = "X"
-                winCondList = [list(map(lambda x: x if x != selection else 'X', i)) for i in winCondList]
-        return winCondList
+            winCondPlayer.append(selection)
+            return winCondPlayer
