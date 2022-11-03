@@ -28,7 +28,7 @@ class Computer():
             self.StarterMoves(positions, winCondList)
             noBestMove = False
 
-    def MoveWinOrBlock (self, positions, noBestMove, winCondList):
+    def MoveWinOrBlock(self, positions, noBestMove, winCondList):
         for list in winCondList:
             xCounter = 0
             oCounter = 0
