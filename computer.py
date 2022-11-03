@@ -25,11 +25,12 @@ class Computer():
     def GetComputersMove(self, b):
         
         noBestMove = True
-        self.MoveWinOrBlock(noBestMove, b)
+        b.winCondList,noBestMove = self.MoveWinOrBlock(noBestMove, b)
 
         if noBestMove == True:
             self.StarterMoves(b)
             noBestMove = False
+        return b
 
     def MoveWinOrBlock(self, noBestMove, b):
         for list in b.winCondList:
@@ -65,5 +66,5 @@ class Computer():
                         i[list.index(v)] = 'O'
 
             #b.winCondList = [list(map(lambda y: y if y != int(compMove) else 'O', i)) for i in b.winCondList]
-        return b.winCondList
+        return b.winCondList, noBestMove
        

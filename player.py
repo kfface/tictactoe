@@ -16,7 +16,7 @@ class Player():
         
         b.winCondList = [list(map(lambda x: x if x != int(userInput) else 'X', i)) for i in b.winCondList]
 
-        #return b.winCondList, b.positions
+        return b
 
     def IsInvalidUserInput(self, userInput, positions):
         try:
