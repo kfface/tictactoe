@@ -1,21 +1,22 @@
+import board
 class Player():
     def GamePrep(self):
         PlayerName = input("Please enter your name: ")
         PlayersToken = input("Which piece would you like to plays, X or O?")
 
-    def GetPlayersMove(self, positions, winCondList):
+    def GetPlayersMove(self, b):
 
         userInput = input("Your turn where would you like to play?: ")
 
-        if(self.IsInvalidUserInput(userInput, positions)):
-            self.GetPlayersMove(positions, winCondList)
+        if(self.IsInvalidUserInput(userInput, b.positions)):
+            self.GetPlayersMove(b.positions, b)
         
         #map user selected position
-        positions[int(userInput)] = "X"
+        b.positions[int(userInput)] = "X"
         
-        winCondList = [list(map(lambda x: x if x != int(userInput) else 'X', i)) for i in winCondList]
+        b.winCondList = [list(map(lambda x: x if x != int(userInput) else 'X', i)) for i in b.winCondList]
 
-        #TODO: why was this originally returning winCondList?
+        #return b.winCondList, b.positions
 
     def IsInvalidUserInput(self, userInput, positions):
         try:

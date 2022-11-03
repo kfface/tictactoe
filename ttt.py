@@ -16,10 +16,10 @@ b.PrintBoard()
 #this will always before or at 9 turns
 while g.moveCount < 10:
     if g.isPlayersTurn == True:
-        p.GetPlayersMove(b.positions, b.winCondList)
+        p.GetPlayersMove(b)
         
     else:
-        c.GetComputersMove(b.positions, b.winCondList)
+        c.GetComputersMove(b)
         
     b.PrintBoard()
     g.CheckForWinner(b.winCondList)
