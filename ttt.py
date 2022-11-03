@@ -1,15 +1,13 @@
 import player
-import computer
-import random
 from board import CheckForWinner, PrintBoard, ClearBoard
+from computer import ComputerStarterMoves, ComputerMoveWinOrBlock
 
 
 #make board
 positions = {1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9"}
 
 #lists for 3 consecutive moves
-winCondPlayer = []
-winCondComp = []
+winCond = []
 topRow = [1,2,3]
 midRow = [4,5,6]
 bottomRow = [7,8,9]
@@ -26,25 +24,31 @@ player.Player().GamePrep()
 PrintBoard(positions)
 userTurn = True
 moveCount = 0
-
-
-while moveCount < 10 and win == 0:
+while win == 0:
     if userTurn == True:
-        winCondPlayer = player.Player().PlayerMove(positions, winCondPlayer)
+        winCondPlayer = player.Player().PlayerMove(positions, winCond)
         PrintBoard(positions)
         print(winCondPlayer)
-        print(winCondComp)
         moveCount += 1
-        win = CheckForWinner(win, winCondPlayer, winCondComp, moveCount)
+        winCond = winCondPlayer
+        try:
+            win = CheckForWinner(win, moveCount, winCond)
+        except:
+            pass
         userTurn = False
     else:
         noBestMove = True
-        computer.Computer().ComputerMoveWinOrBlock(positions, noBestMove, userTurn, winCondComp, winCondList)
         if noBestMove == True:
-            winCondComp = computer.Computer().ComputerStarterMoves(positions, winCondComp)
+            winCondComp = ComputerStarterMoves(positions)
             noBestMove = False
+        else: winCondComp = ComputerMoveWinOrBlock(positions, noBestMove, userTurn, winCond, winCondList)
+        print(winCondComp)
         PrintBoard(positions)
-        win = CheckForWinner(win, moveCount, winCondPlayer, winCondComp)
+        winCond = winCondComp
+        try:
+            win = CheckForWinner(win, moveCount, winCond)
+        except:
+            pass
         userTurn = True
         moveCount += 1
 

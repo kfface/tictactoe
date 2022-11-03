@@ -1,6 +1,8 @@
 import os
 
-def CheckForWinner(winCondList, winCondPlayer, winCondComp, win):
+def CheckForWinner(winCond, win, moveCount):
+    winCond = list(map(int, str(winCond)))
+    winCond = sorted(winCond)
     topRow = [1,2,3]
     midRow = [4,5,6]
     bottomRow = [7,8,9]
@@ -10,19 +12,16 @@ def CheckForWinner(winCondList, winCondPlayer, winCondComp, win):
     diagnal1 = [1,5,9]
     diagnal2 = [3,5,7]
     winCondList = [topRow, midRow, bottomRow, leftCol, midCol, rightCol, diagnal1, diagnal2]
-    for list in winCondList:
-        if list in winCondPlayer:
-            win = 1
-            print("You are the winner!")
-            quit()
-        elif list in winCondComp:
-            win = 1
-            print("Youre are not the winner - in fact not even close...I mean it's binary")
-            quit()
-        else:
-            win = 0
-            pass
+    if winCond is not None:
+         result =  all(elem in winCondList for elem in winCond)
+    if result:
+        print(result)
+        win = 1
         return win
+    else:
+        print("no win")
+        
+
 
     
 def PrintBoard(positions):
