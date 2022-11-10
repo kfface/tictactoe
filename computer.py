@@ -44,7 +44,6 @@ class Computer():
                         if list[index] != "O" and list[index] != "X":
                             compMove = list[index]
                             b.positions[list[index]] = "O"                            
-                            print(b.winCondList,b.positions)
                             noBestMove = False
                             break
         for list in b.winCondList:
@@ -58,7 +57,6 @@ class Computer():
                         if list[index] != "O" and list[index] != "X":
                             compMove = list[index]
                             b.positions[list[index]] = "O"
-                            print(b.winCondList,b.positions)
                             noBestMove = False
                             break
         if noBestMove == False:
