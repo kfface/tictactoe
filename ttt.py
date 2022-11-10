@@ -23,7 +23,7 @@ while b.moveCount < 10:
         
     else:
         c.noBestMove = True
-        b = c.GetComputerMove(b)
+        b = c.GetComputersMove(b)
         b.PrintBoard(b.positions)
         b.CheckForWinner(b)
         b.userTurn = True
