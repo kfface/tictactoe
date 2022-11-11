@@ -18,12 +18,14 @@ while b.moveCount < 10:
     if b.userTurn == True:
         b = p.PlayerMove(b)
         b.PrintBoard(b.positions)
-        b.CheckForWinner(b)
         b.userTurn = False
         
     else:
         c.noBestMove = True
         b = c.GetComputersMove(b)
         b.PrintBoard(b.positions)
-        b.CheckForWinner(b)
         b.userTurn = True
+    
+    b.PrintBoard(b.positions)
+    b.UpdateMoveCount()
+    b.CheckForWinner()

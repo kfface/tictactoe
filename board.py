@@ -18,23 +18,23 @@ class Board():
     userTurn = True
     moveCount = 0
     thereIsWinner = False
-    userTurn = True
-    moveCount = 0
-    thereIsWinner = False
 
-    def CheckForWinner(self, b):
-        for list in b.winCondList:
+    def UpdateMoveCount(self):
+        self.moveCount += 1
+
+    def CheckForWinner(self):
+        for list in self.winCondList:
             if list[0] == list[1] and list[0] == list[2]:
                 if list[0] == "X":
                     print("You are the winner!")
-                    thereIsWinner = True
+                    self.thereIsWinner = True
                     exit()
                 elif list[0] == "O":
                     print("Get wrecked nerd!")
-                    thereIsWinner = True
+                    self.thereIsWinner = True
                     exit()
             else:
-                if b.moveCount == 9 and thereIsWinner == False:
+                if self.moveCount == 9 and self.thereIsWinner == False:
                     print("It's a draw")
                     exit()
         
@@ -45,7 +45,6 @@ class Board():
         print("-----")
         print(positions[7] + "|" + positions[8] + "|" + positions[9])
         print()
-        self.moveCount += 1
 
     def ClearBoard(self):
         clear = lambda : os.system('tput reset')

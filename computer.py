@@ -33,38 +33,40 @@ class Computer():
         return b
 
     def MoveWinOrBlock(self, noBestMove, b):
-        for list in b.winCondList:
+        for listy in b.winCondList:
             xCounter = 0
             oCounter = 0
-            for value in list:
+            for value in listy:
                 if value == "O":
                     oCounter += 1
                 if oCounter == 2:
-                    for index, item in enumerate(list):
-                        if list[index] != "O" and list[index] != "X":
-                            compMove = list[index]
-                            b.positions[list[index]] = "O"                            
+                    for index, item in enumerate(listy):
+                        if listy[index] != "O" and listy[index] != "X":
+                            compMove = listy[index]
+                            b.positions[listy[index]] = "O"                            
                             noBestMove = False
                             break
-        for list in b.winCondList:
+        for listy in b.winCondList:
             xCounter = 0
             oCounter = 0
-            for value in list:
+            for value in listy:
                 if value == "X":
                     xCounter += 1
                 if xCounter == 2:
-                    for index, item in enumerate(list):
-                        if list[index] != "O" and list[index] != "X":
-                            compMove = list[index]
-                            b.positions[list[index]] = "O"
+                    for index, item in enumerate(listy):
+                        if listy[index] != "O" and listy[index] != "X":
+                            compMove = listy[index]
+                            b.positions[listy[index]] = "O"
                             noBestMove = False
                             break
-        if noBestMove == False:
-            for i in b.winCondList:
-                for v in list:
-                    if v == compMove:
-                        i[list.index(v)] = 'O'
 
-            #b.winCondList = [list(map(lambda y: y if y != int(compMove) else 'O', i)) for i in b.winCondList]
+        if noBestMove == False:
+            # for i in b.winCondList:
+            #    for v in list:
+            #        if b.positions[v] == cistompMove:
+            #            print("here")
+            #            i[list.index(v)] = 'O'
+
+            b.winCondList = [list(map(lambda y: y if y != compMove else 'O', i)) for i in b.winCondList]
         return b.winCondList, noBestMove
        
